@@ -1,0 +1,3 @@
+from test_android_selectors import TestAndroidSelectors
+
+TestAndroidSelectors() 
