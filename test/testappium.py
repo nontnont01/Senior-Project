@@ -133,6 +133,7 @@ def perform_random_user_event(deviceName,package_name, actions):
             Textinput_Elements.append(element)
 
         Clickable_Elements = list(set(Clickable_Elements) - set(Textinput_Elements))
+        print(Clickable_Elements)
 
 
 #iMonkey

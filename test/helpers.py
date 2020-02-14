@@ -10,7 +10,7 @@ ANDROID_BASE_CAPS = {
     'automationName': 'UIAutomator2',
     'platformName': 'Android',
     'platformVersion': os.getenv('ANDROID_PLATFORM_VERSION') or '8.1.0',
-    'deviceName': os.getenv('ANDROID_DEVICE_VERSION') or 'emulator-5556',
+    'deviceName': os.getenv('ANDROID_DEVICE_VERSION') or 'emulator-5554',
 }
 
 
