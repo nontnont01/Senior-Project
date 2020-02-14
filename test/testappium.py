@@ -67,7 +67,7 @@ def perform_random_user_event(deviceName,package_name, actions):
     "deviceName" : deviceName,
     "platformName": "Android",
     "udid": deviceName,
-    "version": "8.0.0",
+    "version": "8.1.0",
     "appActivity" : "aarddict.android.DictionariesActivity",
     "appPackage" : appPackage, 
     # "app" : "/Users/lemonn/SeniorProject/AndroidStorage/CoverageAPK/instr/" + package_name + ".apk",
@@ -133,6 +133,7 @@ def perform_random_user_event(deviceName,package_name, actions):
             Textinput_Elements.append(element)
 
         Clickable_Elements = list(set(Clickable_Elements) - set(Textinput_Elements))
+        print(Clickable_Elements)
 
 
 #iMonkey
