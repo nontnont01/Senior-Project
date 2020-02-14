@@ -7,6 +7,7 @@ from subprocess import Popen, PIPE
 
 import time
 import random
+import os
 
 start_time = time.time()
 
@@ -52,25 +53,24 @@ PII = {"email" : Email,
 # ele
 
 
-
-
-
-
-
 #Test 1000 randomly click action
 
 def perform_random_user_event(deviceName,package_name, actions):
-  appPackage = package_name[6:]
-
+  #appPackage = package_name[6:]
+  appPackage = 'io.appium.android.apis'
+  search_activity = '.app.SearchInvoke'
+  app_path = os.path.abspath('../apps/ApiDemos-debug.apk')
   #setup devices
   desired_caps = {
     "deviceName" : deviceName,
     "platformName": "Android",
     "udid": deviceName,
-    "version": "8.0.0",
-    "appActivity" : "aarddict.android.DictionariesActivity",
-    "appPackage" : appPackage, 
-    # "app" : "/Users/lemonn/SeniorProject/AndroidStorage/CoverageAPK/instr/" + package_name + ".apk",
+    "version": "8.1.0",
+    #"appActivity" : "aarddict.android.DictionariesActivity",
+    "appActivity" : search_activity,
+    "appPackage" : appPackage,
+    "app" : app_path,
+    #"app" : "/Users/lemonn/SeniorProject/AndroidStorage/CoverageAPK/instr/" + package_name + ".apk",
     "autoGrantPermissions" : "true",
     "gpsEnabled" : "true"
   }
@@ -218,11 +218,11 @@ def perform_random_user_event(deviceName,package_name, actions):
 
 
 package_name = "instr_aarddict.android"
-deviceName = "192.168.57.107:5555"
+deviceName = "emulator-5554"
+package_name2 = 'io.appium.android.apis'
 
 
-
-perform_random_user_event(deviceName,package_name,100)
+perform_random_user_event(deviceName,package_name2,100)
 
 
 
