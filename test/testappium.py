@@ -63,6 +63,7 @@ def perform_random_user_event(deviceName,package_name, actions):
   #setup devices
   desired_caps = {
     "deviceName" : deviceName,
+    #"deviceName" : "emulator-5554",
     "platformName": "Android",
     "udid": deviceName,
     "version": "8.1.0",
@@ -75,7 +76,8 @@ def perform_random_user_event(deviceName,package_name, actions):
     "gpsEnabled" : "true"
   }
 
-  driver = webdriver.Remote("http://0.0.0.0:4723/wd/hub", desired_caps)
+  #driver = webdriver.Remote("http://0.0.0.0:4724/wd/hub", desired_caps)
+  driver = webdriver.Remote('http://127.0.0.1:4724/wd/hub', desired_caps)
   get_current_window_cmd = "dumpsys window windows | grep -E mCurrentFocus"
   # driver.implicitly_wait(15)
   #get app activity
@@ -86,10 +88,10 @@ def perform_random_user_event(deviceName,package_name, actions):
   main_activity = output[1][:-2]
 
 
-  print(main_activity)
+  #print(main_activity)
 
   window_size = driver.get_window_size()
-  # print(window_size)
+  #print(window_size)
   activity_count = 0
 
 
@@ -125,7 +127,8 @@ def perform_random_user_event(deviceName,package_name, actions):
         # if (len(Clickable_Elements) == 0):
         #   driver.reset()
 
-
+        print(Clickable_Elements)
+        print(driver.page_source)
 
         Textinput_Elements = []
         for element in Clickable_Elements:
@@ -133,7 +136,7 @@ def perform_random_user_event(deviceName,package_name, actions):
             Textinput_Elements.append(element)
 
         Clickable_Elements = list(set(Clickable_Elements) - set(Textinput_Elements))
-        print(Clickable_Elements)
+        #print(Clickable_Elements)
 
 
 #iMonkey
@@ -214,7 +217,7 @@ def perform_random_user_event(deviceName,package_name, actions):
           activity_count+= 1
 
   print("\n")
-  print(str(actions) +" actions --- %s seconds ---" % (time.time() - start_time))
+  #print(str(actions) +" actions --- %s seconds ---" % (time.time() - start_time))
   driver.quit()
 
 
