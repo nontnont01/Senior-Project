@@ -57,9 +57,10 @@ PII = {"email" : Email,
 
 def perform_random_user_event(deviceName,package_name, actions):
   #appPackage = package_name[6:]
-  appPackage = 'io.appium.android.apis'
-  search_activity = '.app.SearchInvoke'
-  app_path = os.path.abspath('../apps/ApiDemos-debug.apk')
+  #appPackage = 'io.appium.android.apis'
+  appPackage = 'com.example.myapplication'
+  search_activity = '.MainActivity'
+  app_path = os.path.abspath('../apps/app-debug.apk')
   #setup devices
   desired_caps = {
     "deviceName" : deviceName,
@@ -77,7 +78,7 @@ def perform_random_user_event(deviceName,package_name, actions):
   }
 
   #driver = webdriver.Remote("http://0.0.0.0:4724/wd/hub", desired_caps)
-  driver = webdriver.Remote('http://127.0.0.1:4724/wd/hub', desired_caps)
+  driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
   get_current_window_cmd = "dumpsys window windows | grep -E mCurrentFocus"
   # driver.implicitly_wait(15)
   #get app activity
@@ -86,6 +87,7 @@ def perform_random_user_event(deviceName,package_name, actions):
   rc = p.returncode
   output = output.decode("utf-8").split('/')
   main_activity = output[1][:-2]
+  
 
 
   #print(main_activity)
@@ -126,9 +128,12 @@ def perform_random_user_event(deviceName,package_name, actions):
         #implicitly_wait timeout reset
         # if (len(Clickable_Elements) == 0):
         #   driver.reset()
-
+        activity = driver.current_activity
+        print(activity)
+        print('1 =')
         print(Clickable_Elements)
-        print(driver.page_source)
+        #time.sleep(5)
+        #print(driver.page_source)
 
         Textinput_Elements = []
         for element in Clickable_Elements:
@@ -136,7 +141,8 @@ def perform_random_user_event(deviceName,package_name, actions):
             Textinput_Elements.append(element)
 
         Clickable_Elements = list(set(Clickable_Elements) - set(Textinput_Elements))
-        #print(Clickable_Elements)
+        print('2 =')
+        print(Clickable_Elements)
 
 
 #iMonkey
@@ -221,9 +227,11 @@ def perform_random_user_event(deviceName,package_name, actions):
   driver.quit()
 
 
-package_name = "instr_aarddict.android"
+#package_name = "instr_aarddict.android"
 deviceName = "emulator-5554"
-package_name2 = 'io.appium.android.apis'
+#package_name2 = 'io.appium.android.apis'
+package_name2 = 'com.example.myapplication'
+
 
 
 perform_random_user_event(deviceName,package_name2,100)
